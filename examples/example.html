@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="assets/jquery-3.4.1.min.js"></script>
+
+    <script src="../build/d3-radial-chart.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+  </head>
+
+  <body>
+    <div id="radial-chart"></div>
+
+    <script>
+      $(document).ready(function() {
+        let radialChart = d3.radialChart();
+
+        d3.select('#radial-chart')
+          .call(radialChart);
+      });
+    </script>
+  </body>
+</html>
