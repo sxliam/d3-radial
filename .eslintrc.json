@@ -24,7 +24,7 @@
         }],
         "comma-spacing": ["error", { "before": false, "after": true }],
         "comma-style": ["error", "last"],
-        "indent": ["error", 2],
+        "indent": ["error", 2, { "VariableDeclarator": { "var": 2, "let": 2, "const": 3 }}],
         "quotes": ["error", "single"],
         "semi": ["error", "always"]
     },
