@@ -5,6 +5,7 @@ function radialChart() {
       margin = {top: 10, left: 10, bottom: 10, right: 10},
       textSize = 15,
       arcPadding = 16,
+      colors = undefined,
       backgroundArcColor = '#f7f7f7',
       arcWidth,
       chartRadius;
@@ -44,6 +45,10 @@ function radialChart() {
       chartRadius = calculateChartRadius();
       arcWidth = (chartRadius - data.length * arcPadding) / data.length;
       
+      if (!colors) {
+        colors = getRandomColorPalette(data.length);
+      }
+
       draw();
     });
   }
@@ -52,6 +57,7 @@ function radialChart() {
 
   function draw() {
     drawBackgroundArcs();
+    drawDataArcs();
   }
 
   function drawBackgroundArcs() {
@@ -65,6 +71,23 @@ function radialChart() {
       .style('fill', () => backgroundArcColor);
 
     backgroundArcs.transition()
+      .delay((d, i) => i * 200)
+      .duration(1000)
+      .attrTween('d', arcTween);
+  }
+
+  function drawDataArcs() {
+    let dataArcs = canvas.append('g')
+      .attr('class', 'data')
+      .selectAll('path')
+      .data(data)
+      .enter()
+      .append('path')
+      .attr('class', 'arc')
+      .attr('data-key', function(d) { return d.key; })
+      .style('fill', (d, i) => colors[i]);
+
+    dataArcs.transition()
       .delay((d, i) => i * 200)
       .duration(1000)
       .attrTween('d', arcTween);
@@ -124,6 +147,21 @@ function radialChart() {
     return getInnerRadius(index) + arcWidth;
   }
 
+  function getRandomColorPalette(length) {
+    let palette = [];
+    
+    let letters = '0123456789ABCDEF';
+    for (let i = 0; i < length; ++i) {
+      let color = '#';
+      for (let j = 0; j < 6; ++j) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      palette.push(color);
+    }
+
+    return palette;
+  }
+
   // #endregion
 
   // #region Getters and Setters
@@ -169,6 +207,24 @@ function radialChart() {
       return arcPadding;
     }
     arcPadding = value;
+
+    return chart;
+  };
+
+  chart.colors = function(value) {
+    if (!arguments.length) {
+      return colors;
+    }
+    colors = value;
+
+    return chart;
+  };
+
+  chart.backgroundArcColor = function(value) {
+    if (!arguments.length) {
+      return backgroundArcColor;
+    }
+    backgroundArcColor = value;
 
     return chart;
   };
