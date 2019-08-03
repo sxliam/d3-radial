@@ -12,7 +12,16 @@
 
     <script>
       $(document).ready(function() {
-        let radialChart = d3.radialChart();
+        let data = [ 
+          {key: 'Indore', value: 28.29}, 
+          {key: 'Khandwa', value: 28.18}, 
+          {key: 'Sehore', value: 27.69}, 
+          {key: 'Dhar', value: 27.34}, 
+          {key: 'Dewas', value: 26.87} 
+        ];
+
+        let radialChart = d3.radialChart()
+          .data(data);
 
         d3.select('#radial-chart')
           .call(radialChart);
