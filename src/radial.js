@@ -11,7 +11,8 @@ function radialChart() {
       chartRadius;
 
   let data = null,
-      pointValue = (point) => point.value;
+      pointValue = (point) => point.value,
+      pointKey = (point) => point.key;
 
   let canvas,
       arc,
@@ -84,8 +85,14 @@ function radialChart() {
       .enter()
       .append('path')
       .attr('class', 'arc')
-      .attr('data-key', function(d) { return d.key; })
+      .attr('data-key', function(d) { return pointKey(d); })
       .style('fill', (d, i) => colors[i]);
+
+    dataArcs
+      .on('mouseover', highlight)
+      .on('mouseleave', function() {
+        d3.selectAll('.arc').attr('opacity', 1);
+      });
 
     dataArcs.transition()
       .delay((d, i) => i * 200)
@@ -135,7 +142,7 @@ function radialChart() {
   }
 
   function arcTween(d, i) {
-    let interpolate = d3.interpolate(0, d.value);
+    let interpolate = d3.interpolate(0, pointValue(d));
     return t => arc(interpolate(t), i);
   }
 
@@ -160,6 +167,11 @@ function radialChart() {
     }
 
     return palette;
+  }
+
+  function highlight(d) {
+    $('.arc[data-key != "' + pointKey(d) + '"]').attr('opacity', 0.3);
+    $('text[data-key != "' + pointKey(d) + '"]').attr('opacity', 0.3);
   }
 
   // #endregion
@@ -243,6 +255,15 @@ function radialChart() {
       return pointValue;
     }
     pointValue = value;
+
+    return chart;
+  };
+
+  chart.pointKey = function(value) {
+    if (!arguments.length) {
+      return pointKey;
+    }
+    pointKey = value;
 
     return chart;
   };
