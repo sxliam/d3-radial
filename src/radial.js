@@ -61,6 +61,7 @@ function radialChart() {
     drawBackgroundArcs();
     drawDataArcs();
     drawLines();
+    drawLabels();
   }
 
   function drawBackgroundArcs() {
@@ -94,6 +95,7 @@ function radialChart() {
       .on('mouseover', highlight)
       .on('mouseleave', function() {
         d3.selectAll('.arc').attr('opacity', 1);
+        d3.selectAll('text').attr('opacity', 1);
       });
 
     dataArcs.transition()
@@ -104,7 +106,7 @@ function radialChart() {
 
   function drawLines() {
     let lines = canvas.append('g')
-      .attr('class', 'horizontal-lines')
+      .attr('class', 'lines')
       .attr('transform', `translate(${-width / 2}, ${-height / 2})`);
 
     for (let i = 0; i < data.length; ++i) {
@@ -136,6 +138,65 @@ function radialChart() {
         .attr('cy', endY)
         .attr('r', radius)
         .style('fill', lineColor);
+
+      lines
+        .append('line')
+        .attr('x1', startX - 25)
+        .attr('y1', startY - 7)
+        .attr('x2', startX)
+        .attr('y2', startY - 7)
+        .style('stroke-width', 1)
+        .style('stroke', lineColor);
+
+      lines
+        .append('line')
+        .attr('x1', startX - 25)
+        .attr('y1', startY + 7)
+        .attr('x2', startX)
+        .attr('y2', startY + 7)
+        .style('stroke-width', 1)
+        .style('stroke', lineColor);
+
+      lines
+        .append('line')
+        .attr('x1', startX)
+        .attr('y1', startY - 7)
+        .attr('x2', startX)
+        .attr('y2', startY + 7)
+        .style('stroke-width', 1)
+        .style('stroke', lineColor);
+    }
+  }
+
+  function drawLabels() {
+    let labels = canvas.append('g')
+      .attr('class', 'labels')
+      .attr('transform', `translate(${-width / 2}, ${-height / 2})`);
+
+    for (let i = 0; i < data.length; ++i) {
+      let point = data[i];
+
+      let startX = width / 2 - 250;
+      let startY = (i + 1) * (arcWidth + arcPadding) - arcWidth / 2 - margin.top;
+
+      let label = 'label-' + i;
+      let text = pointKey(point) + ' ' + pointValue(point);
+      let labelSize = getTextSize(text);
+
+      labels
+        .append('text')
+        .attr('class', label)
+        .attr('x', startX - labelSize.width)
+        .attr('y', startY + textSize / 3)
+        .attr('data-key', function() { 
+          return pointKey(point); 
+        })
+        .text(function() { 
+          return pointKey(point); 
+        })
+        .style('font-size', textSize)
+        .style('font-family', 'Arial')
+        .style('fill', colors[i]);
     }
   }
 
@@ -211,6 +272,16 @@ function radialChart() {
   function highlight(d) {
     $('.arc[data-key != "' + pointKey(d) + '"]').attr('opacity', 0.3);
     $('text[data-key != "' + pointKey(d) + '"]').attr('opacity', 0.3);
+  }
+
+  function getTextSize(text) {
+    let container = d3.select('body').append('svg');
+    container.append('text').text(text).style('font-size', textSize).style('font-family', 'Arial');
+    let size = container.node().getBBox();
+
+    container.remove();
+
+    return size;
   }
 
   // #endregion
