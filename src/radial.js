@@ -32,7 +32,7 @@ function radialChart() {
       canvas = svg.append('g')
         .attr('width', width - margin.left - margin.right)
         .attr('height', height - margin.top - margin.bottom)
-        .attr('transform', `translate(${width / 2}, ${height / 2})`);
+        .attr('transform', `translate(${width / 2 + getLongestLabelSize()}, ${height / 2})`);
 
       scale = d3.scaleLinear()
         .domain([0, getMaxDataValue()])
@@ -282,6 +282,20 @@ function radialChart() {
     container.remove();
 
     return size;
+  }
+
+  function getLongestLabelSize() {
+    let longest = 0;
+    for (let i = 0; i < data.length; ++i) {
+      let point = data[i];
+      let label = pointKey(point);
+      let width = getTextSize(label).width;
+      if (width > longest) {
+        longest = width;
+      }
+    }
+
+    return longest;
   }
 
   // #endregion
