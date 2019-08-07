@@ -7,6 +7,7 @@ function radialChart() {
       arcPadding = 16,
       colors = undefined,
       backgroundArcColor = '#f7f7f7',
+      lineColor = '#c7c7c7',
       arcWidth,
       chartRadius;
 
@@ -59,6 +60,7 @@ function radialChart() {
   function draw() {
     drawBackgroundArcs();
     drawDataArcs();
+    drawLines();
   }
 
   function drawBackgroundArcs() {
@@ -98,6 +100,43 @@ function radialChart() {
       .delay((d, i) => i * 200)
       .duration(1000)
       .attrTween('d', arcTween);
+  }
+
+  function drawLines() {
+    let lines = canvas.append('g')
+      .attr('class', 'horizontal-lines')
+      .attr('transform', `translate(${-width / 2}, ${-height / 2})`);
+
+    for (let i = 0; i < data.length; ++i) {
+      let startX = width / 2 - 250;
+      let startY = (i + 1) * (arcWidth + arcPadding) - arcWidth / 2 - margin.top;
+      let endX = width / 2;
+      let endY = (i + 1) * (arcWidth + arcPadding) - arcWidth / 2 - margin.top;
+      let radius = 3;
+
+      lines
+        .append('line')
+        .attr('x1', startX)
+        .attr('y1', startY)
+        .attr('x2', endX)
+        .attr('y2', endY)
+        .style('stroke-width', 1)
+        .style('stroke', lineColor);
+
+      lines
+        .append('circle')
+        .attr('cx', startX)
+        .attr('cy', startY)
+        .attr('r', radius)
+        .style('fill', lineColor);
+
+      lines
+        .append('circle')
+        .attr('cx', endX - radius)
+        .attr('cy', endY)
+        .attr('r', radius)
+        .style('fill', lineColor);
+    }
   }
 
   // #endregion
