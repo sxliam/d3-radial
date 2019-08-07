@@ -99,7 +99,7 @@ function radialChart() {
     dataArcs
       .on('mouseover', highlight)
       .on('mouseleave', function() {
-        d3.selectAll('.arc').attr('opacity', 1);
+        d3.selectAll('.arc').attr('opacity', 1);   // What is the dot before arc
         d3.selectAll('text').attr('opacity', 1);
       });
 
@@ -178,7 +178,7 @@ function radialChart() {
       .attr('class', 'labels')
       .attr('transform', `translate(${-width / 2}, ${-height / 2})`);
 
-    for (let i = 0; i < data.length; ++i) {
+    for (let i = 0; i < data.length; ++i) {       // What is the double plus here
       let point = data[i];
 
       let startX = width / 2 - 250;
@@ -223,7 +223,7 @@ function radialChart() {
   function getBackgroundArcsData() {
     let backgroundArcsData = [];
 
-    for (let i = 0; i < data.length; ++i) {
+    for (let i = 0; i < data.length; ++i) {      // What is the statement in the bracket, a lot similar statement like this
       backgroundArcsData.push({
         value: max
       });
@@ -312,7 +312,7 @@ function radialChart() {
     }
     width = value;
 
-    return chart;
+    return chart;           // Why it is return chart here, but not return width
   };
 
   chart.height = function(value) {
