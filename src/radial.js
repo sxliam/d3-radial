@@ -365,6 +365,15 @@ function radialChart() {
     return chart;
   };
 
+  chart.lineColor = function(value) {
+    if (!arguments.length) {
+      return lineColor;
+    }
+    lineColor = value;
+
+    return chart;
+  };
+
   chart.data = function(value) {
     if (!arguments.length) {
       return data;
