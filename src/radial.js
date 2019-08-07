@@ -13,7 +13,8 @@ function radialChart() {
 
   let data = null,
       pointValue = (point) => point.value,
-      pointKey = (point) => point.key;
+      pointKey = (point) => point.key,
+      max = undefined;
 
   let canvas,
       arc,
@@ -34,8 +35,12 @@ function radialChart() {
         .attr('height', height - margin.top - margin.bottom)
         .attr('transform', `translate(${width / 2 + getLongestLabelSize()}, ${height / 2})`);
 
+      if (!max) {
+        max = getMaxDataValue();
+      }
+
       scale = d3.scaleLinear()
-        .domain([0, getMaxDataValue()])
+        .domain([0, max])
         .range([0, 2 * PI]);
 
       arc = d3.arc()
@@ -217,11 +222,10 @@ function radialChart() {
 
   function getBackgroundArcsData() {
     let backgroundArcsData = [];
-    let maxDataValue = getMaxDataValue();
 
     for (let i = 0; i < data.length; ++i) {
       backgroundArcsData.push({
-        value: maxDataValue
+        value: max
       });
     }
 
@@ -397,6 +401,15 @@ function radialChart() {
       return pointKey;
     }
     pointKey = value;
+
+    return chart;
+  };
+
+  chart.max = function(value) {
+    if (!arguments.length) {
+      return max;
+    }
+    max = value;
 
     return chart;
   };
