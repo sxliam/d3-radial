@@ -24,7 +24,7 @@ function radialChart() {
         arcMinRadius = 30;
 
   function chart(selection) {
-    selection.each(function() {
+    selection.each(function() {      // what is the meaning of selection.each in here
       let svg = d3.select(this)
         .append('svg')
         .attr('width', width)
@@ -99,7 +99,7 @@ function radialChart() {
     dataArcs
       .on('mouseover', highlight)
       .on('mouseleave', function() {
-        d3.selectAll('.arc').attr('opacity', 1);   // What is the dot before arc
+        d3.selectAll('.arc').attr('opacity', 1);    
         d3.selectAll('text').attr('opacity', 1);
       });
 
@@ -178,7 +178,7 @@ function radialChart() {
       .attr('class', 'labels')
       .attr('transform', `translate(${-width / 2}, ${-height / 2})`);
 
-    for (let i = 0; i < data.length; ++i) {       // What is the double plus here
+    for (let i = 0; i < data.length; ++i) {       
       let point = data[i];
 
       let startX = width / 2 - 250;
@@ -223,7 +223,7 @@ function radialChart() {
   function getBackgroundArcsData() {
     let backgroundArcsData = [];
 
-    for (let i = 0; i < data.length; ++i) {      // What is the statement in the bracket, a lot similar statement like this
+    for (let i = 0; i < data.length; ++i) {      
       backgroundArcsData.push({
         value: max
       });
