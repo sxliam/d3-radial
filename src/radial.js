@@ -312,8 +312,8 @@ function radialChart() {
     }
     width = value;
 
-    return chart;           // Why it is return chart here, but not return width
-  };
+    return chart;         
+  }; 
 
   chart.height = function(value) {
     if (!arguments.length) {
