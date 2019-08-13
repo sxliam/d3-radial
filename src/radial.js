@@ -47,6 +47,7 @@ function radialChart() {
         .innerRadius((d, i) => getInnerRadius(i))
         .outerRadius((d, i) => getOuterRadius(i))
         .startAngle(0)
+        .cornerRadius(20)
         .endAngle((d) => scale(d));
 
       chartRadius = calculateChartRadius();
