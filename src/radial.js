@@ -24,7 +24,7 @@ function radialChart() {
         arcMinRadius = 30;
 
   function chart(selection) {
-    selection.each(function() {      // what is the meaning of selection.each in here
+    selection.each(function() {      
       let svg = d3.select(this)
         .append('svg')
         .attr('width', width)
@@ -71,7 +71,7 @@ function radialChart() {
 
   function drawBackgroundArcs() {
     let backgroundArcs = canvas.append('g')
-      .attr('class', 'background-arc')
+      .attr('class', 'background-arc')     // How do I know which class attribute should be put here
       .selectAll('path')
       .data(getBackgroundArcsData())
       .enter()
@@ -107,6 +107,7 @@ function radialChart() {
       .delay((d, i) => i * 200)
       .duration(1000)
       .attrTween('d', arcTween);
+
   }
 
   function drawLines() {
@@ -115,7 +116,7 @@ function radialChart() {
       .attr('transform', `translate(${-width / 2}, ${-height / 2})`);
 
     for (let i = 0; i < data.length; ++i) {
-      let startX = width / 2 - 250;
+      let startX = width / 2.5 - chartRadius;
       let startY = (i + 1) * (arcWidth + arcPadding) - arcWidth / 2 - margin.top;
       let endX = width / 2;
       let endY = (i + 1) * (arcWidth + arcPadding) - arcWidth / 2 - margin.top;
@@ -181,7 +182,7 @@ function radialChart() {
     for (let i = 0; i < data.length; ++i) {       
       let point = data[i];
 
-      let startX = width / 2 - 250;
+      let startX = width / 2.5 - chartRadius;
       let startY = (i + 1) * (arcWidth + arcPadding) - arcWidth / 2 - margin.top;
 
       let label = 'label-' + i;
