@@ -184,7 +184,7 @@ function radialChart() {
     for (let i = 0; i < data.length; ++i) {       
       let point = data[i];
 
-      let startX = width / 2.5 - chartRadius;
+      let startX = width / 2.7 - chartRadius;
       let startY = (i + 1) * (arcWidth + arcPadding) - arcWidth / 2 - margin.top;
 
       let label = 'label-' + i;
