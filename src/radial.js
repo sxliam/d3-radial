@@ -14,7 +14,8 @@ function radialChart() {
   let data = null,
       pointValue = (point) => point.value,
       pointKey = (point) => point.key,
-      max = undefined;
+      max = undefined,
+      round = false;
 
   let canvas,
       arc,
@@ -44,11 +45,11 @@ function radialChart() {
         .range([0, 2 * PI]);
 
       arc = d3.arc()
-        .innerRadius((d, i) => getInnerRadius(i))
-        .outerRadius((d, i) => getOuterRadius(i))
-        .startAngle(0)
-        .cornerRadius(20)
-        .endAngle((d) => scale(d));
+      .innerRadius((d, i) => getInnerRadius(i))
+      .outerRadius((d, i) => getOuterRadius(i))
+      .startAngle(0)
+      .cornerRadius(round)
+      .endAngle((d) => scale(d));
 
       chartRadius = calculateChartRadius();
       arcWidth = (chartRadius - data.length * arcPadding) / data.length;
@@ -72,7 +73,7 @@ function radialChart() {
 
   function drawBackgroundArcs() {
     let backgroundArcs = canvas.append('g')
-      .attr('class', 'background-arc')     // How do I know which class attribute should be put here
+      .attr('class', 'background-arc')    
       .selectAll('path')
       .data(getBackgroundArcsData())
       .enter()
@@ -199,7 +200,7 @@ function radialChart() {
           return pointKey(point); 
         })
         .text(function() { 
-          return pointKey(point); 
+          return text; 
         })
         .style('font-size', textSize)
         .style('font-family', 'Arial')
@@ -415,6 +416,16 @@ function radialChart() {
 
     return chart;
   };
+
+  chart.round = function(value) {
+    if (!arguments.length) {
+      return round;
+    }
+    round = value;
+
+    return chart;
+  };
+
 
   // #endregion
 
