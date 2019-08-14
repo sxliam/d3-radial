@@ -4,7 +4,7 @@ D3 plugin allowing to create radial bar chart from a flat data set.
 
 The plugin aims to follow the convention for developing D3 plugins described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) by Mike Bostock.
 
-![Example01](https://raw.githubusercontent.com/ksokolovic/d3-pivots/master/images/d3-pivot-example01.png)
+![Example01](https://github.com/ksokolovic/d3-radial/blob/develop/Image/example%20image.png)
 <!-- The example address has not been changed -->
 
 ## Installing
@@ -39,25 +39,23 @@ Check out the `examples/example.html` to see the plugin in practice.
 Below is listed the snippet that's used for initializing the radial bar chart with the sample data set:
 
 ```js
-let data = null,
-      pointValue = (point) => point.value,
-      pointKey = (point) => point.key,
-      max = undefined,
-      round = false;
+let data = [ 
+          {key: 'JavaScript', value: 2300000}, 
+          {key: 'Python', value: 1000000}, 
+          {key: 'Java', value: 986000}, 
+          {key: 'Ruby', value: 870000}, 
+          {key: 'PHP', value: 559000}
+        ];
+          
 
-  let canvas,
-      arc,
-      scale;
+        let radialChart = d3.radialChart()
+          .data(data)
+          .arcPadding(15)
+          .max(3000000)
+          .round(15);
 
-  const PI = Math.PI,
-        arcMinRadius = 30;
-
-  function chart(selection) {
-    selection.each(function() {      
-      let svg = d3.select(this)
-        .append('svg')
-        .attr('width', width)
-        .attr('height', height);
+        d3.select('#radial-chart')
+          .call(radialChart);
 ```
 
 ## API Reference
