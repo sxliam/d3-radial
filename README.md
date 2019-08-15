@@ -120,11 +120,9 @@ Set or return the text of each category on the chart.
 
 Set or return the max value of the background arc on the chart.
 
-### chart.round([round])
+### chart.cornerRadius([cornerRadius])
 
-If radius is specified, sets the corner radius to the specified function or number and returns this arc generator.
-
-If radius is not specified, returns false which will make the egde to be right angle.
+Set or return the arc corner radius. Default value is set to 0.
 
 ## Authors
 
