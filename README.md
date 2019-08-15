@@ -4,7 +4,7 @@ D3 plugin allowing to create radial bar chart from a flat data set.
 
 The plugin aims to follow the convention for developing D3 plugins described in [Towards Reusable Charts](https://bost.ocks.org/mike/chart/) by Mike Bostock.
 
-![Example01](https://github.com/ksokolovic/d3-radial/blob/develop/Image/example%20image.png)
+![Example01](https://github.com/sxliam/d3-radial/blob/develop/Image/example%20image.png)
 <!-- The example address has not been changed -->
 
 ## Installing
@@ -15,7 +15,7 @@ If you are using NPM, you can install the plugin via:
 $ npm install d3-radial-chart
 ```
 
-Otherwise, download the [latest release](https://github.com/ksokolovic/d3-radial/releases/latest) and include it in your page using the `script` tag.   
+Otherwise, download the [latest release](https://github.com/sxliam/d3-radial/releases/latest) and include it in your page using the `script` tag.   
 <!-- the address has not been changed. -->
 
 ### Dependencies
