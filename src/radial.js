@@ -45,11 +45,11 @@ function radialChart() {
         .range([0, 2 * PI]);
 
       arc = d3.arc()
-      .innerRadius((d, i) => getInnerRadius(i))
-      .outerRadius((d, i) => getOuterRadius(i))
-      .startAngle(0)
-      .cornerRadius(round)
-      .endAngle((d) => scale(d));
+        .innerRadius((d, i) => getInnerRadius(i))
+        .outerRadius((d, i) => getOuterRadius(i))
+        .startAngle(0)
+        .cornerRadius(round)
+        .endAngle((d) => scale(d));
 
       chartRadius = calculateChartRadius();
       arcWidth = (chartRadius - data.length * arcPadding) / data.length;
