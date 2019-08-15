@@ -15,7 +15,7 @@ function radialChart() {
       pointValue = (point) => point.value,
       pointKey = (point) => point.key,
       max = undefined,
-      round = false;
+      cornerRadius = 0;
 
   let canvas,
       arc,
@@ -48,7 +48,7 @@ function radialChart() {
         .innerRadius((d, i) => getInnerRadius(i))
         .outerRadius((d, i) => getOuterRadius(i))
         .startAngle(0)
-        .cornerRadius(round)
+        .cornerRadius(cornerRadius)
         .endAngle((d) => scale(d));
 
       chartRadius = calculateChartRadius();
@@ -417,11 +417,11 @@ function radialChart() {
     return chart;
   };
 
-  chart.round = function(value) {
+  chart.cornerRadius = function(value) {
     if (!arguments.length) {
-      return round;
+      return cornerRadius;
     }
-    round = value;
+    cornerRadius = value;
 
     return chart;
   };
