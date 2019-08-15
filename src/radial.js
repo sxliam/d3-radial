@@ -78,7 +78,7 @@ function radialChart() {
       .data(getBackgroundArcsData())
       .enter()
       .append('path')
-      .attr('class', 'arc')
+      .attr('class', 'background-arc')
       .style('fill', () => backgroundArcColor);
 
     backgroundArcs.transition()
