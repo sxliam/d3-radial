@@ -1,4 +1,4 @@
-# d3-radial
+# d3-radial-chart
 
 D3 plugin allowing to create radial bar chart from a flat data set.
 
