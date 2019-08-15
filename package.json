@@ -1,48 +1,48 @@
 {
-    "name": "d3-radial-chart",
-    "version": "1.0.0",
-    "description": "D3 plugin allowing to create radial chart.",
-    "keywords": [
-        "d3",
-        "d3-module",
-        "radial"
-    ],
-    "license": "MIT",
-    "main": "build/d3-radial-chart.js",
-    "jsnext:main": "index",
-    "homepage": "https://github.com/ksokolovic/d3-radial",
-    "author": {
-        "name": "Shuxi Lian",
-        "url": "https://github.com/sxliam"
-    },
-    "contributors": [
-        {
-            "name": "Kemal Sokolović",
-            "url": "https://github.com/ksokolovic"
-        }
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ksokolovic/d3-radial.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ksokolovic/d3-radial/issues"
-    },
-    "scripts": {
-        "pretest": "rollup -c",
-        "test": "tape 'test/**/*-test.js' && eslint src",
-        "prepublish": "rm -rf build && yarn test",
-        "postpublish": "zip -j build/d3-radial-chart.zip -- LICENSE README.md build/d3-radial-chart.js build/d3-radial-chart.min.js"
-    },
-    "devDependencies": {
-        "d3": "5.9.2",
-        "eslint": "5.16.0",
-        "rollup": "1.12.4",
-        "rollup-plugin-terser": "5.0.0",
-        "tape": "4.10.2",
-        "uglify-js": "3.5.15"
-    },
-    "dependencies": {
-        "d3": "5.9.2"
+  "name": "d3-radial-chart",
+  "version": "1.0.0",
+  "description": "D3 plugin allowing to create radial chart.",
+  "keywords": [
+    "d3",
+    "d3-module",
+    "radial"
+  ],
+  "license": "MIT",
+  "main": "build/d3-radial-chart.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/ksokolovic/d3-radial",
+  "author": {
+    "name": "Shuxi Lian",
+    "url": "https://github.com/sxliam"
+  },
+  "contributors": [
+    {
+      "name": "Kemal Sokolović",
+      "url": "https://github.com/ksokolovic"
     }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ksokolovic/d3-radial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ksokolovic/d3-radial/issues"
+  },
+  "scripts": {
+    "pretest": "rollup -c",
+    "test": "tape 'test/**/*-test.js' && eslint src",
+    "prepublish": "rm -rf build && yarn test",
+    "postpublish": "zip -j build/d3-radial-chart.zip -- LICENSE README.md build/d3-radial-chart.js build/d3-radial-chart.min.js"
+  },
+  "devDependencies": {
+    "d3": "5.9.2",
+    "eslint": "5.16.0",
+    "rollup": "1.12.4",
+    "rollup-plugin-terser": "5.0.0",
+    "tape": "4.10.2",
+    "uglify-js": "3.5.15"
+  },
+  "dependencies": {
+    "d3": "5.9.2"
+  }
 }

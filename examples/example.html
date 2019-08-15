@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="assets/jquery-3.4.1.min.js"></script>
+
+    <script src="../build/d3-radial-chart.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+  </head>
+
+  <body>
+    <div id="radial-chart"></div>
+
+    <script>
+      $(document).ready(function() {
+        let data = [ 
+          {key: 'JavaScript', value: 2300000}, 
+          {key: 'Python', value: 1000000}, 
+          {key: 'Java', value: 986000}, 
+          {key: 'Ruby', value: 870000}, 
+          {key: 'PHP', value: 559000}
+        ];
+          
+        // try in Git
+
+        let radialChart = d3.radialChart()
+          .data(data)
+          .arcPadding(15)
+          .max(3000000)
+          .cornerRadius(20);
+
+        d3.select('#radial-chart')
+          .call(radialChart);
+      });
+    </script>
+  </body>
+</html>
