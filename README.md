@@ -15,7 +15,6 @@ $ npm install d3-radial-chart
 ```
 
 Otherwise, download the [latest release](https://github.com/sxliam/d3-radial/releases) and include it in your page using the `script` tag.   
-<!-- the address has not been changed. -->
 
 ### Dependencies
 
